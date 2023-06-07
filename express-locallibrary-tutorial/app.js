@@ -38,7 +38,9 @@ app.use(
 // connects to mongoDB
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = `mongodb+srv://admin:${process.env.db_key}@cluster0.2jwxnro.mongodb.net/local_library?retryWrites=true&w=majority`;
+const dev_db_url = `mongodb+srv://admin:${process.env.db_key}@cluster0.2jwxnro.mongodb.net/local_library?retryWrites=true&w=majority`;
+
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 
 main().catch((err) => console.log(err));
 async function main() {
